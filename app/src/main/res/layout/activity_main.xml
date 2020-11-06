@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    skin:enable="true">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:skin="http://schemas.android.com/android/skin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="20dp"
+                android:text="@string/corepatch" />
+
+            <Switch
+                android:id="@+id/id_downgrade"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/downgr" />
+
+            <Switch
+                android:id="@+id/id_sign"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/authcreak" />
+
+            <Switch
+                android:id="@+id/id_cover"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/zipauthcreak" />
+            <Switch
+                android:id="@+id/id_ssl"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/hookSSL" />
+            <Switch
+                android:id="@+id/id_adb"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/adbAllow" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="20dp"
+                android:text="设置" />
+
+            <Switch
+                android:id="@+id/id_hide"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/hideicon" />
+
+
+            <View
+                android:id="@+id/line5"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="5dp"
+                android:paddingTop="50dp"
+                android:paddingBottom="20dp"
+                android:background="#dc484b4b" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="20dp"
+                android:text="@string/link" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="20dp"
+                android:text="@string/blog" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="20dp"
+                android:text="@string/donta" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/alipay"
+                android:layout_width="150dp"
+                android:layout_height="118dp"
+                android:layout_gravity="center"
+                android:maxHeight="150dp"
+                android:src="@drawable/alipay" />
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:paddingTop="20dp"
+                android:text="@string/blog2" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

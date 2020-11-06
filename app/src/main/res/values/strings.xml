@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">核心破解</string>
+    <string name="corepatch">核心破解</string>
+    <string name="downgr"><b>允许降级安装应用 - 实时生效</b>\n允许应用在安装新版本的情况下直接覆盖安装旧版本</string>
+    <string name="authcreak"><b>禁用软件包管理器签名验证 - 实时生效</b>\n关闭安装应用时的签名验证,可以安装被篡改的应用</string>
+    <string name="zipauthcreak"><b>禁用APK签名验证 - 实时生效</b>\n允许直接覆盖安装同包名不同签名的应用</string>
+    <string name="hookSSL"><b>禁用SSL校验 - 实时生效</b>\n允许不合法的HTTPS链接</string>
+    <string name="adbAllow"><b>默认adb允许链接- 重启生效</b>\n跳过adb弹框验证</string>
+    <string name="hideicon"><b>隐藏应用图标</b>\n隐藏核心破解在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>
+    <string name="blog">
+        <b>博客主页: blog.coderstory.cn</b>
+        \n\n<b>微博主页: weibo.com/codestory</b>
+    </string>
+    <string name="blog2">
+        \n\n1.去签名校验思路来自 http://t.cn/RQhbCit
+        \n2.APK Signature Scheme v2签名破解和App降级安装属原创
+        \n3.平台签名获取方法源自 Lucky Patcher
+        \n\n
+    </string>
+    <string name="link"><b>联系方式</b></string>
+    <string name="donta"><b>捐赠支持作者</b></string>
+</resources>
