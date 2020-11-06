@@ -24,9 +24,9 @@ import eu.chainfire.libsuperuser.Shell;
 public class MainActivity extends AppCompatActivity {
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor editor;
-    String ApplicationName = "com.coderstory.toolkit";
-    public final String PREFS_FOLDER = " /data/data/" + ApplicationName + "/shared_prefs\n";
-    public final String PREFS_FILE = " /data/data/" + ApplicationName + "/shared_prefs/" + "conf.xml" + ".xml\n";
+    //String ApplicationName = "com.coderstory.toolkit";
+    public final String PREFS_FOLDER = " /data/data/" + XPreferenceUtils.getPkgName() + "/shared_prefs\n";
+    public final String PREFS_FILE = " /data/data/" + XPreferenceUtils.getPkgName() + "/shared_prefs/" + XPreferenceUtils.SHARED_FILE_NAME + ".xml\n";
     private ProgressDialog dialog;
     @SuppressLint("HandlerLeak")
     Handler myHandler = new Handler() {
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void sudoFixPermissions() {
         new Thread(() -> {
-            File pkgFolder = new File("/data/data/" + ApplicationName);
+            File pkgFolder = new File("/data/data/" + XPreferenceUtils.getPkgName());
             if (pkgFolder.exists()) {
                 pkgFolder.setExecutable(true, false);
                 pkgFolder.setReadable(true, false);

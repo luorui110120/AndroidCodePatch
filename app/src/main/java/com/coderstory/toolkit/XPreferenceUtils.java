@@ -16,13 +16,13 @@ public class XPreferenceUtils
     public static final String HIDE_ICON ="hide_icon";
     public static final String DEFAULT ="DEFAULT";
     public static final String PLATFORM ="platform";
-    public static final String PKG_NAME = "com.coderstory.toolkit";
+    public static final String SHARED_FILE_NAME = "conf.xml";
 
     private static XSharedPreferences intance = null;
 
     public static XSharedPreferences getIntance(){
         if (intance == null){
-            intance = new XSharedPreferences(PKG_NAME,"conf.xml");
+            intance = new XSharedPreferences(getPkgName(),SHARED_FILE_NAME);
             intance.makeWorldReadable();
         }else {
             intance.reload();
@@ -43,11 +43,9 @@ public class XPreferenceUtils
         return getIntance().getBoolean(COVER_CHECK, false);
     }
     public static boolean isSslCheck(){
-        XposedBridge.log(" isSslCheck:" + getIntance().getBoolean(ADB_ALLOW, true));
         return getIntance().getBoolean(SSL_CHECK, true);
     }
     public static boolean isAdbAllow(){
-        XposedBridge.log(" isAdbAllow:" + getIntance().getBoolean(ADB_ALLOW, true));
         return getIntance().getBoolean(ADB_ALLOW, true);
     }
     public static String getPlatform(){
@@ -55,5 +53,11 @@ public class XPreferenceUtils
     }
     public static boolean isHideIcon(){
         return getIntance().getBoolean(HIDE_ICON, false);
+    }
+    public static String getPkgName()
+    {
+//        return "com.coderstory.toolkit";
+        String cou = CorePatch.class.getCanonicalName();
+        return cou.substring(0, cou.lastIndexOf('.'));
     }
 }
