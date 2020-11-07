@@ -56,8 +56,7 @@ public class XPreferenceUtils
     }
     public static String getPkgName()
     {
-//        return "com.coderstory.toolkit";
-        String cou = CorePatch.class.getCanonicalName();
+        String cou = MainActivity.class.getCanonicalName();
         return cou.substring(0, cou.lastIndexOf('.'));
     }
 }
