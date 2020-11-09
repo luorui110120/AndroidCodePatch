@@ -13,6 +13,7 @@ public class XPreferenceUtils
     public static final String COVER_CHECK ="cover_check";
     public static final String SSL_CHECK ="ssl_check";
     public static final String ADB_ALLOW ="adb_allow";
+    public static final String ADB_SWITCH ="adb_switch";
     public static final String HIDE_ICON ="hide_icon";
     public static final String DEFAULT ="DEFAULT";
     public static final String PLATFORM ="platform";

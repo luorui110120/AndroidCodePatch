@@ -11,6 +11,7 @@ import android.didikee.donate.AlipayDonate;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // 获取  adb 调试状态
+        boolean enableAdb = (Settings.Secure.getInt(getContentResolver(), Settings.Secure.ADB_ENABLED, 0) > 0);
         // 读取平台签名并保存
         new Thread(() -> {
             try {
@@ -104,17 +106,26 @@ public class MainActivity extends AppCompatActivity {
             getEditor().apply();
             sudoFixPermissions();
         });
-        $(R.id.id_adb).setOnClickListener(v -> {
+        $(R.id.id_adbAllow).setOnClickListener(v -> {
             getEditor().putBoolean(XPreferenceUtils.ADB_ALLOW, ((Switch) v).isChecked());
             getEditor().apply();
             sudoFixPermissions();
+        });
+        $(R.id.id_adbSiwtch).setOnClickListener(v -> {
+            if(((Switch) v).isChecked()){
+                Shell.SU.run("settings put global adb_enabled 1");
+            }
+            else{
+                Shell.SU.run("settings put global adb_enabled 0");
+            }
         });
 
         ((Switch) $(R.id.id_downgrade)).setChecked(getPrefs().getBoolean(XPreferenceUtils.DEGRADING_CHECK, true));
         ((Switch) $(R.id.id_sign)).setChecked(getPrefs().getBoolean(XPreferenceUtils.SIGN_CHECK, true));
         ((Switch) $(R.id.id_cover)).setChecked(getPrefs().getBoolean(XPreferenceUtils.COVER_CHECK, true));
         ((Switch) $(R.id.id_ssl)).setChecked(getPrefs().getBoolean(XPreferenceUtils.SSL_CHECK, true));
-        ((Switch) $(R.id.id_adb)).setChecked(getPrefs().getBoolean(XPreferenceUtils.ADB_ALLOW, true));
+        ((Switch) $(R.id.id_adbAllow)).setChecked(getPrefs().getBoolean(XPreferenceUtils.ADB_ALLOW, true));
+        ((Switch) $(R.id.id_adbSiwtch)).setChecked(enableAdb);
         ((Switch) $(R.id.id_hide)).setChecked(getPrefs().getBoolean(XPreferenceUtils.HIDE_ICON, false));
 
         $(R.id.id_hide).setOnClickListener(v -> {
