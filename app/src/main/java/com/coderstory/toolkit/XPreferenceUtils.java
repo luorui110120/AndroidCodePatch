@@ -12,6 +12,7 @@ public class XPreferenceUtils
     public static final String SIGN_CHECK ="sign_check";
     public static final String COVER_CHECK ="cover_check";
     public static final String SSL_CHECK ="ssl_check";
+    public static final String HIDE_HTTP_PROXY ="hide_http_proxy";
     public static final String ADB_ALLOW ="adb_allow";
     public static final String ADB_SWITCH ="adb_switch";
     public static final String HIDE_ICON ="hide_icon";
@@ -45,6 +46,9 @@ public class XPreferenceUtils
     }
     public static boolean isSslCheck(){
         return getIntance().getBoolean(SSL_CHECK, true);
+    }
+    public static boolean isHideHttpProxy(){
+        return getIntance().getBoolean(HIDE_HTTP_PROXY, true);
     }
     public static boolean isAdbAllow(){
         return getIntance().getBoolean(ADB_ALLOW, true);

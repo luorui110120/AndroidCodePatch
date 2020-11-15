@@ -106,6 +106,11 @@ public class MainActivity extends AppCompatActivity {
             getEditor().apply();
             sudoFixPermissions();
         });
+        $(R.id.id_hide_http_proxy).setOnClickListener(v -> {
+            getEditor().putBoolean(XPreferenceUtils.HIDE_HTTP_PROXY, ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+        });
         $(R.id.id_adbAllow).setOnClickListener(v -> {
             getEditor().putBoolean(XPreferenceUtils.ADB_ALLOW, ((Switch) v).isChecked());
             getEditor().apply();
@@ -124,11 +129,12 @@ public class MainActivity extends AppCompatActivity {
         ((Switch) $(R.id.id_sign)).setChecked(getPrefs().getBoolean(XPreferenceUtils.SIGN_CHECK, true));
         ((Switch) $(R.id.id_cover)).setChecked(getPrefs().getBoolean(XPreferenceUtils.COVER_CHECK, true));
         ((Switch) $(R.id.id_ssl)).setChecked(getPrefs().getBoolean(XPreferenceUtils.SSL_CHECK, true));
+        ((Switch) $(R.id.id_hide_http_proxy)).setChecked(getPrefs().getBoolean(XPreferenceUtils.HIDE_HTTP_PROXY, true));
         ((Switch) $(R.id.id_adbAllow)).setChecked(getPrefs().getBoolean(XPreferenceUtils.ADB_ALLOW, true));
         ((Switch) $(R.id.id_adbSiwtch)).setChecked(enableAdb);
-        ((Switch) $(R.id.id_hide)).setChecked(getPrefs().getBoolean(XPreferenceUtils.HIDE_ICON, false));
+        ((Switch) $(R.id.id_hide_icon)).setChecked(getPrefs().getBoolean(XPreferenceUtils.HIDE_ICON, false));
 
-        $(R.id.id_hide).setOnClickListener(v -> {
+        $(R.id.id_hide_icon).setOnClickListener(v -> {
             getEditor().putBoolean(XPreferenceUtils.HIDE_ICON, ((Switch) v).isChecked());
             getEditor().apply();
             sudoFixPermissions();

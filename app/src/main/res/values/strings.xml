@@ -5,6 +5,7 @@
     <string name="authcreak"><b>禁用软件包管理器签名验证 - 实时生效</b>\n关闭安装应用时的签名验证,可以安装被篡改的应用</string>
     <string name="zipauthcreak"><b>禁用APK签名验证 - 实时生效</b>\n允许直接覆盖安装同包名不同签名的应用</string>
     <string name="hookSSL"><b>禁用SSL校验 - 实时生效</b>\n允许不合法的HTTPS链接</string>
+    <string name="hideProxy"><b>隐藏http代理 - 实时生效</b>\n隐藏http代理过校验</string>
     <string name="adbAllow"><b>默认adb允许链接- 重启生效</b>\n跳过adb弹框验证</string>
     <string name="adbSiwtch"><b>adb调试打开- 实时生效</b>\nadb调试开关</string>
     <string name="hideicon"><b>隐藏应用图标</b>\n隐藏核心破解在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>

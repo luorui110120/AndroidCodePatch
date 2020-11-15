@@ -214,5 +214,8 @@ public class CorePatch extends XposedHelper implements IXposedHookZygoteInit, IX
             XposedHelpers.findAndHookMethod("com.android.systemui.usb.UsbDebuggingActivity$UsbDisconnectedReceiver", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, AdbUsbAllow.usbDisconnectedRecivce);
             XposedHelpers.findAndHookMethod("com.android.systemui.usb.UsbDebuggingActivity", paramLoadPackageParam.classLoader, "onCreate", Bundle.class, AdbUsbAllow.usbDebuggingActivityOnCreate);
         }
+        if (XPreferenceUtils.isHideHttpProxy()){
+            XposedHelpers.findAndHookMethod("java.lang.System", paramLoadPackageParam.classLoader, "getProperty", String.class, HideHttpProxy.httpChkProperty);
+        }
     }
 }

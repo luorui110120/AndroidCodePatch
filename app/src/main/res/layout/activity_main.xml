@@ -65,6 +65,15 @@
                 android:paddingStart="30dp"
                 android:text="@string/hookSSL" />
             <Switch
+                android:id="@+id/id_hide_http_proxy"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/hideProxy" />
+            <Switch
                 android:id="@+id/id_adbSiwtch"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -93,7 +102,7 @@
                 android:text="设置" />
 
             <Switch
-                android:id="@+id/id_hide"
+                android:id="@+id/id_hide_icon"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"

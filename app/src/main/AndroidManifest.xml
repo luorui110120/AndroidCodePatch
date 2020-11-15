@@ -12,6 +12,7 @@
         <activity android:name="com.coderstory.toolkit.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -23,9 +24,20 @@
             android:targetActivity="com.coderstory.toolkit.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
             </intent-filter>
         </activity-alias>
+
+        <!--随着安卓系统启动而启动-->
+        <receiver android:name="com.coderstory.toolkit.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.coderstory.toolkit.StartDetectService" >
+        </service>
+
 
         <meta-data
             android:name="xposedmodule"
@@ -38,5 +50,6 @@
             android:value="53" />
 
     </application>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 </manifest>
