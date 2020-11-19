@@ -100,6 +100,15 @@
                 android:paddingStart="30dp"
                 android:paddingTop="20dp"
                 android:text="设置" />
+            <Switch
+                android:id="@+id/id_boot_completed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@color/switchBtn"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:text="@string/bootCompleted" />
 
             <Switch
                 android:id="@+id/id_hide_icon"
@@ -146,7 +155,7 @@
                 android:paddingStart="30dp"
                 android:paddingTop="20dp"
                 android:text="@string/donta" />
-
+<!--
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/alipay"
                 android:layout_width="150dp"
@@ -154,7 +163,7 @@
                 android:layout_gravity="center"
                 android:maxHeight="150dp"
                 android:src="@drawable/alipay" />
-
+-->
 
             <TextView
                 android:id="@+id/textView2"

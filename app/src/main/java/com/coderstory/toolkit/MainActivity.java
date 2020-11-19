@@ -14,6 +14,7 @@ import android.os.Message;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Switch;
@@ -132,8 +133,13 @@ public class MainActivity extends AppCompatActivity {
         ((Switch) $(R.id.id_hide_http_proxy)).setChecked(getPrefs().getBoolean(XPreferenceUtils.HIDE_HTTP_PROXY, true));
         ((Switch) $(R.id.id_adbAllow)).setChecked(getPrefs().getBoolean(XPreferenceUtils.ADB_ALLOW, true));
         ((Switch) $(R.id.id_adbSiwtch)).setChecked(enableAdb);
+        ((Switch) $(R.id.id_boot_completed)).setChecked(getPrefs().getBoolean(XPreferenceUtils.BOOT_COMPLETED, true));
         ((Switch) $(R.id.id_hide_icon)).setChecked(getPrefs().getBoolean(XPreferenceUtils.HIDE_ICON, false));
-
+        $(R.id.id_boot_completed).setOnClickListener(v -> {
+            getEditor().putBoolean(XPreferenceUtils.BOOT_COMPLETED, ((Switch) v).isChecked());
+            getEditor().apply();
+            sudoFixPermissions();
+        });
         $(R.id.id_hide_icon).setOnClickListener(v -> {
             getEditor().putBoolean(XPreferenceUtils.HIDE_ICON, ((Switch) v).isChecked());
             getEditor().apply();
@@ -152,9 +158,9 @@ public class MainActivity extends AppCompatActivity {
                         PackageManager.DONT_KILL_APP);
             }
         });
-        $(R.id.alipay).setOnClickListener(view ->
-                donateAlipay()
-        );
+//        $(R.id.alipay).setOnClickListener(view ->
+//                donateAlipay()
+//        );
         if (!getPrefs().getBoolean("isRooted", false)) {
             // 检测弹窗
             new Thread(() -> {
@@ -199,15 +205,18 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    protected SharedPreferences getPrefs() {
-        prefs = getSharedPreferences("conf.xml", Context.MODE_PRIVATE);
+    public SharedPreferences getPrefs() {
+        if(prefs == null)
+        {
+            prefs = getSharedPreferences(XPreferenceUtils.SHARED_FILE_NAME, Context.MODE_PRIVATE);
+        }
         return prefs;
     }
 
-    private void donateAlipay() {
-        boolean hasInstalledAlipayClient = AlipayDonate.hasInstalledAlipayClient(MainActivity.this);
-        if (hasInstalledAlipayClient) {
-            AlipayDonate.startAlipayClient(MainActivity.this, "FKX03884EYVUJKBZLWQTFA");
-        }
-    }
+//    private void donateAlipay() {
+//        boolean hasInstalledAlipayClient = AlipayDonate.hasInstalledAlipayClient(MainActivity.this);
+//        if (hasInstalledAlipayClient) {
+//            AlipayDonate.startAlipayClient(MainActivity.this, "FKX03884EYVUJKBZLWQTFA");
+//        }
+//    }
 }

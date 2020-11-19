@@ -17,8 +17,12 @@ public class BootBroadcastReceiver extends BroadcastReceiver
 //            Log.v("smile", "BootBroadcastReceiver");
 //            Intent welcomeIntent = new Intent(context, StartDetectService.class);
 //            context.startService(welcomeIntent);
-            ///关闭 selinux
-            Shell.SU.run("setenforce 0");
+            if(XPreferenceUtils.getConfigShare(context).getBoolean(XPreferenceUtils.BOOT_COMPLETED,true))
+            {
+                ///关闭 selinux
+                Shell.SU.run("setenforce 0");
+                Shell.SU.run("sh " + XPreferenceUtils.BOOT_SHELL_PATH);
+            }
 
         }
     }

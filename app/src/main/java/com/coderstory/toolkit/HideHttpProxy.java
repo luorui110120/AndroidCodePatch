@@ -28,7 +28,7 @@ public class HideHttpProxy
             super.beforeHookedMethod(param);
             String key = (String)param.args[0];
             if(!key.isEmpty()){
-                XposedBridge.log("System.getProperty key:" + key + " match :" + matchKey(key));
+//                XposedBridge.log("System.getProperty key:" + key + " match :" + matchKey(key));
                 if(matchKey(key) > 1){
                     param.setResult(null);
                 }

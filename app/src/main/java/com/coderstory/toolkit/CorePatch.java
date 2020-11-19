@@ -31,59 +31,74 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class CorePatch extends XposedHelper implements IXposedHookZygoteInit, IXposedHookLoadPackage {
 
     public void initZygote(StartupParam paramStartupParam) {
-
-        XposedHelpers.findAndHookMethod("java.security.MessageDigest", null, "isEqual", byte[].class, byte[].class, new XC_MethodHook() {
-            protected void beforeHookedMethod(MethodHookParam methodHookParam)
-                    throws Throwable {
-                if (XPreferenceUtils.isSignCheck()) {
-                    methodHookParam.setResult(true);
+        // 7.0以上才支持, 6.0的系统可以使用幸运破解器
+        if(android.os.Build.VERSION.SDK_INT > 23)
+        {
+            XposedHelpers.findAndHookMethod("java.security.MessageDigest", null, "isEqual", byte[].class, byte[].class, new XC_MethodHook()
+            {
+                protected void beforeHookedMethod(MethodHookParam methodHookParam)
+                        throws Throwable
+                {
+                    if (XPreferenceUtils.isSignCheck())
+                    {
+                        methodHookParam.setResult(true);
+                    }
                 }
-            }
-        });
+            });
 
-        XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.org.conscrypt.OpenSSLSignature", null), "engineVerify", new XC_MethodHook() {
-            protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
-                    throws Throwable {
-                if (XPreferenceUtils.isSignCheck()) {
-                    paramAnonymousMethodHookParam.setResult(true);
+            XposedBridge.hookAllMethods(XposedHelpers.findClass("com.android.org.conscrypt.OpenSSLSignature", null), "engineVerify", new XC_MethodHook()
+            {
+                protected void beforeHookedMethod(MethodHookParam paramAnonymousMethodHookParam)
+                        throws Throwable
+                {
+                    if (XPreferenceUtils.isSignCheck())
+                    {
+                        paramAnonymousMethodHookParam.setResult(true);
+                    }
                 }
-            }
-        });
+            });
 
-        final Class ApkSignatureSchemeV2Verifier = XposedHelpers.findClass("android.util.apk.ApkSignatureSchemeV2Verifier", null);
-        final Class packageParser = XposedHelpers.findClass("android.content.pm.PackageParser", null);
-        final Class strictJarVerifier = XposedHelpers.findClass("android.util.jar.StrictJarVerifier", null);
-        final Class packageClass = XposedHelpers.findClass("android.content.pm.PackageParser.Package", null);
+            final Class ApkSignatureSchemeV2Verifier = XposedHelpers.findClass("android.util.apk.ApkSignatureSchemeV2Verifier", null);
+            final Class packageParser = XposedHelpers.findClass("android.content.pm.PackageParser", null);
+            final Class strictJarVerifier = XposedHelpers.findClass("android.util.jar.StrictJarVerifier", null);
+            final Class packageClass = XposedHelpers.findClass("android.content.pm.PackageParser.Package", null);
 
 
-        XposedBridge.hookAllMethods(packageParser, "getApkSigningVersion", XC_MethodReplacement.returnConstant(1));
+            XposedBridge.hookAllMethods(packageParser, "getApkSigningVersion", XC_MethodReplacement.returnConstant(1));
 
-        XposedBridge.hookAllConstructors(strictJarVerifier, new XC_MethodHook() {
-            @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+            XposedBridge.hookAllConstructors(strictJarVerifier, new XC_MethodHook()
+            {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+                {
 
-                if (XPreferenceUtils.isSignCheck()) {
-                    param.args[3] = false;
+                    if (XPreferenceUtils.isSignCheck())
+                    {
+                        param.args[3] = false;
+                    }
                 }
-            }
-        });
+            });
 
-        XposedBridge.hookAllConstructors(ApkSignatureSchemeV2Verifier, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                Object packageInfoLite = param.thisObject;
-                if (XPreferenceUtils.isSignCheck()) {
-                    Field field = packageClass.getField(" SF_ATTRIBUTE_ANDROID_APK_SIGNED_ID");
-                    field.setAccessible(true);
-                    field.set(packageInfoLite, -1);
+            XposedBridge.hookAllConstructors(ApkSignatureSchemeV2Verifier, new XC_MethodHook()
+            {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable
+                {
+                    Object packageInfoLite = param.thisObject;
+                    if (XPreferenceUtils.isSignCheck())
+                    {
+                        Field field = packageClass.getField(" SF_ATTRIBUTE_ANDROID_APK_SIGNED_ID");
+                        field.setAccessible(true);
+                        field.set(packageInfoLite, -1);
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam paramLoadPackageParam) {
-
 
         if (("android".equals(paramLoadPackageParam.packageName)) && (paramLoadPackageParam.processName.equals("android"))) {
 
@@ -211,6 +226,7 @@ public class CorePatch extends XposedHelper implements IXposedHookZygoteInit, IX
         }
         if (paramLoadPackageParam.packageName.equals(AdbUsbAllow.SYSTEMUI)
             && XPreferenceUtils.isAdbAllow()){
+        //    XposedBridge.log("UsbDebuggingActivity hook!");
             XposedHelpers.findAndHookMethod("com.android.systemui.usb.UsbDebuggingActivity$UsbDisconnectedReceiver", paramLoadPackageParam.classLoader, "onReceive", Context.class, Intent.class, AdbUsbAllow.usbDisconnectedRecivce);
             XposedHelpers.findAndHookMethod("com.android.systemui.usb.UsbDebuggingActivity", paramLoadPackageParam.classLoader, "onCreate", Bundle.class, AdbUsbAllow.usbDebuggingActivityOnCreate);
         }

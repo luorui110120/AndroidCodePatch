@@ -8,6 +8,7 @@
     <string name="hideProxy"><b>隐藏http代理 - 实时生效</b>\n隐藏http代理过校验</string>
     <string name="adbAllow"><b>默认adb允许链接- 重启生效</b>\n跳过adb弹框验证</string>
     <string name="adbSiwtch"><b>adb调试打开- 实时生效</b>\nadb调试开关</string>
+    <string name="bootCompleted"><b>开机启动</b>\n开机启动关闭selinux;\n并运行一个/data/local/core.sh的启动脚本,这个脚本可以自定义内容</string>
     <string name="hideicon"><b>隐藏应用图标</b>\n隐藏核心破解在桌上面的图标，隐藏图标后可在Xposed安装器中打开</string>
     <string name="blog">
         <b>博客主页: blog.coderstory.cn</b>

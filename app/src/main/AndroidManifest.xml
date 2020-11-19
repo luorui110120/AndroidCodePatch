@@ -44,7 +44,7 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="Android 7.x-9.x 核心破解" />
+            android:value="Android 6.0-9.x 核心破解" />
         <meta-data
             android:name="xposedminversion"
             android:value="53" />
