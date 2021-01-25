@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         ((Switch) $(R.id.id_sign)).setChecked(getPrefs().getBoolean(XPreferenceUtils.SIGN_CHECK, true));
         ((Switch) $(R.id.id_cover)).setChecked(getPrefs().getBoolean(XPreferenceUtils.COVER_CHECK, true));
         ((Switch) $(R.id.id_ssl)).setChecked(getPrefs().getBoolean(XPreferenceUtils.SSL_CHECK, true));
-        ((Switch) $(R.id.id_hide_http_proxy)).setChecked(getPrefs().getBoolean(XPreferenceUtils.HIDE_HTTP_PROXY, true));
+        ((Switch) $(R.id.id_hide_http_proxy)).setChecked(getPrefs().getBoolean(XPreferenceUtils.HIDE_HTTP_PROXY, false));
         ((Switch) $(R.id.id_adbAllow)).setChecked(getPrefs().getBoolean(XPreferenceUtils.ADB_ALLOW, true));
         ((Switch) $(R.id.id_adbSiwtch)).setChecked(enableAdb);
         ((Switch) $(R.id.id_boot_completed)).setChecked(getPrefs().getBoolean(XPreferenceUtils.BOOT_COMPLETED, true));

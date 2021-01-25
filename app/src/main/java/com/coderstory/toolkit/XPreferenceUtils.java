@@ -53,7 +53,7 @@ public class XPreferenceUtils
         return getIntance().getBoolean(SSL_CHECK, true);
     }
     public static boolean isHideHttpProxy(){
-        return getIntance().getBoolean(HIDE_HTTP_PROXY, true);
+        return getIntance().getBoolean(HIDE_HTTP_PROXY, false);
     }
     public static boolean isAdbAllow(){
         return getIntance().getBoolean(ADB_ALLOW, true);

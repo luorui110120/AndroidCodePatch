@@ -130,6 +130,16 @@ public class CorePatch extends XposedHelper implements IXposedHookZygoteInit, IX
                     }
                 }
             });
+            /// 看7.1 源码 所写 添加下面这个函数hook主要是为了 第三方程序拿system权限
+            XposedBridge.hookAllMethods(localClass, "getParentOrChildPackageChangedSharedUser", new XC_MethodHook() {
+
+                protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
+                    if (XPreferenceUtils.isSignCheck()) {
+                        methodHookParam.setResult(null);
+                    }
+                }
+            });
+
 
             XposedBridge.hookAllMethods(localClass, "compareSignatures", new XC_MethodHook() {
                 protected void beforeHookedMethod(MethodHookParam methodHookParam) throws Throwable {
